@@ -296,7 +296,6 @@ class Crack(Main):
 	
 def login():
 	try:
-		os.system('clear')
 		banner()
 		cetak(nel('\t©©© Saran Ektensi : [green]Cookiedough[white] ©©©'))
 		asu = random.choice([m,k,h,b,u])
